@@ -9,7 +9,7 @@ ssh -i ~/.ssh/appuser -A -t appuser@${bastion_ip} 'ssh ${someinternalhost_ip}'
 где заменяем `${bastion_ip}` на IP хоста bastion и `${someinternalhost_ip}` на IP хоста __someinternalhost__ из интерфейса YC \
 или можно даже задать их как переменные типа
 ```bash
-export bastion_ip=$(yc compute instance list | grep bastion | awk -F"|" '{print $6}' | tr -d ' ') 
+export bastion_ip=$(yc compute instance list | grep bastion | awk -F"|" '{print $6}' | tr -d ' ')
 export someinternalhost_ip=$(yc compute instance list | grep someinternalhost | awk -F"|" '{print $7}' | tr -d ' ')
 ```
 Для подключения по алиасу необходимо прописать параметры хостов `~/.ssh/config`:
@@ -31,7 +31,7 @@ Host someinternalhost
 bastion_IP = 84.201.131.80
 someinternalhost_IP = 10.128.0.18
 ```
-## cloud-testapp 
+## cloud-testapp
 ```
 testapp_IP = 84.201.157.27
 testapp_port = 9292
@@ -48,3 +48,10 @@ yc compute instance create \
   --metadata-from-file user-data=./metadata.yaml \
   --ssh-key ~/.ssh/appuser.pub
 ```
+
+## packer-base
+- Создан стандартный образ ubuntu16.json через packer
+- Шаблон параметризирован
+- Переменные внесены в variables.json
+- Создан bake-образ immutable.json
+- Создан скрипт create-reddit-vm.sh который будет создавать ВМ с помощью Yandex.Cloud CLI
