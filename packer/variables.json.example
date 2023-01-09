@@ -1,5 +1,5 @@
 {
   "yc_folder_id": "sda7uygasgsdg8sdg",
   "yc_source_image_family": "some_source_image_id",
-  "yc_service_account_key_file": "/home/username/key.json"
+  "yc_service_account_key_file": "./key.json"
 }
