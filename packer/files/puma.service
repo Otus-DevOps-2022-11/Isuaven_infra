@@ -4,8 +4,8 @@ After=mongod.service
 
 [Service]
 Type=notify
-WorkingDirectory=/home/appuser/reddit
-User=appuser
+WorkingDirectory=/home/project/reddit
+User=ubuntu
 ExecStart=/usr/local/bin/puma -d
 KillMode=process
 Restart=always

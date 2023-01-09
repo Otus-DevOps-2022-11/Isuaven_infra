@@ -33,14 +33,12 @@
 	{
 	    "type": "file",
 	    "source": "files/puma.service",
-	    "destination": "/etc/systemd/system/puma.service"
+	    "destination": "/tmp/puma.service"
 	},
-	{
-	    "type": "shell",
-	    "inline": [
-	       "sudo systemctl start puma.service",
-	       "sudo systemctl enable puma.service"
-	    ]
-	}
+        {
+            "type": "shell",
+            "script": "scripts/enable_service.sh",
+            "execute_command": "sudo {{.Path}}"
+        }
     ]
 }
