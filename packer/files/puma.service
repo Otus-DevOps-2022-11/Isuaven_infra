@@ -1,0 +1,15 @@
+[Unit]
+Description=Puma server
+After=mongod.service
+
+[Service]
+Type=notify
+WorkingDirectory=/home/project/reddit
+User=ubuntu
+ExecStart=/usr/local/bin/puma -d
+KillMode=process
+Restart=always
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target
