@@ -34,3 +34,22 @@ resource "yandex_compute_instance" "db" {
   ssh-keys = "ubuntu:${file(var.public_key_path)}"
   }
 }
+
+resource "null_resource" "db_postconfig" {
+  connection {
+    type  = "ssh"
+    host  = yandex_compute_instance.db.network_interface.0.nat_ip_address
+    user  = "ubuntu"
+    agent = false
+    # путь до приватного ключа
+    private_key = "${file(var.private_key)}"
+  }
+    provisioner "file" {
+    content     = templatefile("${path.module}/files/mongod.conf.tftpl", { db_int_ip = yandex_compute_instance.db.network_interface.0.ip_address })
+    destination = "/tmp/mongod.conf"
+  }
+
+  provisioner "remote-exec" {
+    script = "${path.module}/files/deploy.sh"
+  }
+}

@@ -8,3 +8,10 @@ variable app_disk_image {
 variable subnet_id {
   description = "Subnets for modules"
 }
+variable private_key {
+  # Описание переменной
+  description = "Path to the private key used for ssh access"
+}
+variable db_int_ip {
+  description = "DB IP"
+}
