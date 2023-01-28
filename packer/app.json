@@ -1,0 +1,24 @@
+{
+    "builders": [
+        {
+            "type": "yandex",
+            "service_account_key_file": "{{user `yc_service_account_key_file`}}",
+            "folder_id": "{{user `yc_folder_id`}}",
+            "source_image_family": "{{user `yc_source_image_family`}}",
+            "image_name": "reddit-app-{{timestamp}}",
+            "image_family": "reddit-app",
+            "ssh_username": "ubuntu",
+            "platform_id": "standard-v1",
+	    "zone": "ru-central1-a",
+	    "subnet_id": "e9bth40jinc7ekodlkor",
+	    "use_ipv4_nat": true
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "script": "scripts/install_ruby.sh",
+            "execute_command": "sudo {{.Path}}"
+        }
+    ]
+}
