@@ -4,3 +4,5 @@ packer/variables.json
 *.tfstate.backup
 *.tfvars
 .terraform/
+*.retry
+ansible/plugins/inventory/__pycache__/

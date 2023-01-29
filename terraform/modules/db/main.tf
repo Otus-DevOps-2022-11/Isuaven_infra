@@ -42,6 +42,7 @@ resource "yandex_compute_instance" "db" {
 }
 
 resource "null_resource" "db_postconfig" {
+  count = "${var.deploy_app == 1 ? 1 : 0}"
   connection {
     type  = "ssh"
     host  = yandex_compute_instance.db.network_interface.0.nat_ip_address
