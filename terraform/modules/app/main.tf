@@ -1,4 +1,5 @@
 terraform {
+
   required_providers {
     yandex = "~> 0.35.0"
   }
