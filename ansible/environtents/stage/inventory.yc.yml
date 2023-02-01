@@ -1,0 +1,17 @@
+---
+plugin: yc_compute
+folders:
+  - b1gsa5r0vp97dugusrn4
+filters:
+  - status == 'RUNNING'
+auth_kind: serviceaccountfile
+service_account_file: ~/terraform-svc_key.json
+hostnames:
+  - "{{name}}"
+compose:
+  ansible_host: network_interfaces[0].primary_v4_address.one_to_one_nat.address
+  internal_ip: network_interfaces[0].primary_v4_address.address
+
+groups:
+  db: labels['tags'] == 'reddit-db'
+  app: labels['tags'] == 'reddit-app'
