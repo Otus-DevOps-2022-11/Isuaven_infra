@@ -32,6 +32,7 @@ module "app" {
   subnet_id       = module.vpc.vpc_subnet_id
   private_key     = var.private_key
   db_int_ip       = module.db.internal_ip_address_db
+  deploy_app      = 0
 }
 
 module "db" {
@@ -40,4 +41,5 @@ module "db" {
   db_disk_image   = var.db_disk_image
   subnet_id       = module.vpc.vpc_subnet_id
   private_key     = var.private_key
+  deploy_app      = 0
 }

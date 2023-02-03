@@ -15,3 +15,7 @@ variable private_key {
 variable db_int_ip {
   description = "DB IP"
 }
+variable deploy_app {
+  description = "Deploy app true(1) or false(0)"
+  default = 1
+}
