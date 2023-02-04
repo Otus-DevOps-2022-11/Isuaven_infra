@@ -14,7 +14,7 @@
         version: monolith
       notify: Reload puma
     - name: Bundle install
-      bundler:
+      ansible.builtin.bundler:
         state: present
         chdir: /home/ubuntu/reddit
     - name: Print URL

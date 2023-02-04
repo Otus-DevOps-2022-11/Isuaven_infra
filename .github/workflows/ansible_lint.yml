@@ -19,7 +19,7 @@ jobs:
     - name: Lint Ansible Playbooks
       uses: ansible/ansible-lint-action@main
       with:
-        targets: |
+        path: |
           ./ansible/playbooks
           ./ansible/roles
         args: "-c .ansible-lint"

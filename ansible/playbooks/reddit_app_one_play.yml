@@ -44,7 +44,7 @@
       tags: deploy-tag
       notify: Reload puma
     - name: Bundle install
-      bundler:
+      ansible.builtin.bundler:
         state: present
         chdir: /home/ubuntu/reddit
       tags: deploy-tag
