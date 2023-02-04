@@ -22,22 +22,9 @@ variable "private_key" {
   description = "Path to the private key used for ssh access"
   type        = string
 }
-variable "image_id" {
-  description = "Disk image"
-  type        = string
-}
-variable "subnet_id" {
-  description = "Subnet"
-  type        = string
-}
 variable "service_account_key_file" {
   description = "key .json"
   type        = string
-}
-variable "instance_count" {
-  description = "Count of instances"
-  default     = "1"
-  type        = number
 }
 variable "app_disk_image" {
   description = "Disk image for reddit app"
