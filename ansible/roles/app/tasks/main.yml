@@ -17,4 +17,4 @@
     group: ubuntu
 
 - name: Enable puma
-  systemd: name=puma enabled=yes
+  ansible.builtin.systemd: name=puma enabled=yes

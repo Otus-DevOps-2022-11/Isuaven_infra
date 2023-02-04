@@ -7,9 +7,9 @@
     - "{{ inventory_dir }}/credentials.yml"
 
   tasks:
-    - name: create users
-      user:
+    - name: Create users
+      ansible.builtin.user:
         name: "{{ item.key }}"
-        password: "{{ item.value.password|password_hash('sha512', 65534|random(seed=inventory_hostname)|string) }}"
+        password: "{{ item.value.password | password_hash('sha512', 65534 | random(seed=inventory_hostname) | string) }}"
         groups: "{{ item.value.groups | default(omit) }}"
       with_dict: "{{ credentials.users }}"

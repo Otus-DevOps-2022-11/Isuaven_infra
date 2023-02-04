@@ -89,6 +89,9 @@ yc compute instance create \
 - Добавлены бейджи со статусом билда
 
 ![Run OTUS tests](https://github.com/Otus-DevOps-2022-11/Isuaven_infra/actions/workflows/run-tests.yml/badge.svg)
+
 ![Run Packer validate test](https://github.com/Otus-DevOps-2022-11/Isuaven_infra/actions/workflows/packer_validate.yml/badge.svg)
+
 ![Run Terraform validate test](https://github.com/Otus-DevOps-2022-11/Isuaven_infra/actions/workflows/terraform_validate.yml/badge.svg)
+
 ![Run Ansible Lint test](https://github.com/Otus-DevOps-2022-11/Isuaven_infra/actions/workflows/ansible_lint.yml/badge.svg)

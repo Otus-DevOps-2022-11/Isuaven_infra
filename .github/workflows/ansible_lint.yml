@@ -17,7 +17,7 @@ jobs:
         ref: ${{ github.ref }}
 
     - name: Lint Ansible Playbooks
-      uses: ansible/ansible-lint-action@master
+      uses: ansible/ansible-lint-action@main
       with:
         targets: |
           ./ansible/playbooks
