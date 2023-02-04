@@ -1,0 +1,25 @@
+name: Run Ansible Lint
+
+on:
+  push:
+    branches-ignore: main
+  pull_request:
+    branches-ignore: main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout this repo
+      uses: actions/checkout@v2
+      with:
+        ref: ${{ github.ref }}
+
+    - name: Lint Ansible Playbooks
+      uses: ansible/ansible-lint-action@master
+      with:
+        targets: |
+          ./ansible/playbooks
+          ./ansible/roles
+        args: "-c .ansible-lint"

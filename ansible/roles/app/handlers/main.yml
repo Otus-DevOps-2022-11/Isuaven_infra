@@ -1,4 +1,4 @@
 ---
 # handlers file for roles/app
-- name: reload puma
+- name: Reload puma
   systemd: name=puma state=restarted
