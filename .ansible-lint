@@ -7,3 +7,4 @@ skip_list:
 - experimental
 - meta-incorrect
 - meta-no-info
+- fqcn

@@ -14,7 +14,7 @@
         version: monolith
       notify: Reload puma
     - name: Bundle install
-      community.general.bundler:
+      bundler:
         state: present
         chdir: /home/ubuntu/reddit
     - name: Print URL
