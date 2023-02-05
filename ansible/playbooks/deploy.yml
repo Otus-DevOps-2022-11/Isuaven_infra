@@ -10,13 +10,14 @@
     - name: Fetch the latest version of application code
       ansible.builtin.git:
         repo: 'https://github.com/express42/reddit.git'
-        dest: /home/ubuntu/reddit
+        dest: "/home/{{ deploy_user }}/reddit"
         version: monolith
+      become: true
       notify: Reload puma
     - name: Bundle install
       ansible.builtin.bundler:
         state: present
-        chdir: /home/ubuntu/reddit
+        chdir: "/home/{{ deploy_user }}/reddit"
     - name: Print URL
       ansible.builtin.debug:
         msg: "For check use http://{{ ansible_host }}:9292/"

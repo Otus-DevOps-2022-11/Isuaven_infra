@@ -1,0 +1,28 @@
+---
+# Добавим ключ репозитория для последующей работы с ним
+- name: Add APT key
+  ansible.builtin.apt_key:
+    url: https://www.mongodb.org/static/pgp/server-4.2.asc
+    state: present
+  tags: install
+
+# Подключаем репозиторий с пакетами mongodb
+- name: Add APT repository
+  ansible.builtin.apt_repository:
+    repo: deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.2 multiverse
+    state: present
+  tags: install
+
+# Выполним установку пакета
+- name: Install mongodb package
+  ansible.builtin.apt:
+    name: mongodb-org
+    state: present
+  tags: install
+
+# Включаем сервис
+- name: Configure service supervisor
+  ansible.builtin.systemd:
+    name: mongod
+    enabled: yes
+  tags: install
