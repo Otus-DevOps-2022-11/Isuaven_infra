@@ -1,0 +1,52 @@
+name: Run Terraform configs validation
+
+on:
+  push:
+    branches-ignore: main
+  pull_request:
+    branches-ignore: main
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment: ["stage", "prod"]
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        ref: ${{ github.ref }}
+
+    - uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: 0.12.19
+    - name: Terraform Init
+      id: init
+      run: terraform init
+      working-directory: ./terraform/${{ matrix.environment }}
+
+    - name: Terraform Validate
+      id: validate
+      run: terraform validate -no-color
+      working-directory: ./terraform/${{ matrix.environment }}
+  tflint:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment: ["stage", "prod"]
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        ref: ${{ github.ref }}
+
+    - uses: terraform-linters/setup-tflint@v3
+      name: Setup TFLint
+
+    - name: Show version
+      run: tflint --version
+
+    - name: Init TFLint
+      run: tflint --init  ./terraform/${{ matrix.environment }}
+
+    - name: Run TFLint
+      run: tflint -f checkstyle ./terraform/${{ matrix.environment }}

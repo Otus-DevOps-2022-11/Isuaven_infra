@@ -5,7 +5,7 @@
   tasks:
   # Установим в цикле все зависимости
   - name: Install ruby and rubygems and required packages
-    apt: "name={{ item }} state=present"
+    ansible.builtin.apt: "name={{ item }} state=present"
     with_items:
       - ruby-full
       - ruby-bundler

@@ -1,0 +1,10 @@
+---
+# tasks file for roles/db
+- name: Show info about the env this host belongs to
+  ansible.builtin.debug: msg="This host is in {{ env }} environment!!!"
+- name: Change mongo config file
+  ansible.builtin.template:
+    src: templates/mongod.conf.j2
+    dest: /etc/mongod.conf
+    mode: 0644
+  notify: Restart mongod

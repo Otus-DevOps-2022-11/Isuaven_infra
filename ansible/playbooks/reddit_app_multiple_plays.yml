@@ -7,15 +7,15 @@
     mongo_bind_ip: 0.0.0.0
   tasks:
     - name: Change mongo config file
-      template:
+      ansible.builtin.template:
         src: templates/mongod.conf.j2
         dest: /etc/mongod.conf
         mode: 0644
-      notify: restart mongod
+      notify: Restart mongod
 
   handlers:
-  - name: restart mongod
-    service: name=mongod state=restarted
+  - name: Restart mongod
+    ansible.builtin.service: name=mongod state=restarted
 
 - name: Configure App
   hosts: app
@@ -25,49 +25,49 @@
    db_host: 192.168.10.4
   tasks:
     - name: Add unit file for Puma
-      copy:
+      ansible.builtin.copy:
         src: files/puma.service
         dest: /etc/systemd/system/puma.service
-      notify: reload puma
+      notify: Reload puma
 
     - name: Add config for DB connection
-      template:
+      ansible.builtin.template:
         src: templates/db_config.j2
         dest: /home/ubuntu/db_config
         owner: ubuntu
         group: ubuntu
 
-    - name: enable puma
-      systemd: name=puma enabled=yes
+    - name: Enable puma
+      ansible.builtin.systemd: name=puma enabled=yes
 
   handlers:
-  - name: reload puma
-    systemd: name=puma state=restarted
+  - name: Reload puma
+    ansible.builtin.systemd: name=puma state=restarted
 
 - name: Deploy App
   hosts: app
   tags: deploy-tag
   tasks:
     - name: Install Git
-      apt:
+      ansible.builtin.apt:
         name: git
         state: present
       become: true
     - name: Fetch the latest version of application code
-      git:
+      ansible.builtin.git:
         repo: 'https://github.com/express42/reddit.git'
         dest: /home/ubuntu/reddit
         version: monolith
-      notify: reload puma
+      notify: Reload puma
     - name: Bundle install
-      bundler:
+      ansible.builtin.bundler:
         state: present
         chdir: /home/ubuntu/reddit
     - name: Print URL
-      debug:
+      ansible.builtin.debug:
         msg: "For check use http://{{ ansible_host }}:9292/"
 
   handlers:
-    - name: reload puma
+    - name: Reload puma
       become: true
-      systemd: name=puma state=restarted
+      ansible.builtin.systemd: name=puma state=restarted

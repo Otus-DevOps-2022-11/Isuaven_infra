@@ -81,3 +81,17 @@ yc compute instance create \
 - Выполнено всё основное ДЗ по созданию различных плейбуков, от простого до несокльких для каждой функции
 - Настроен динамический инвентори и параметризирован плейбук app.yml чтобы не вставлять руками внутренний IP DB
 - Пересобраны образы Packer с интеграцией плебуков ансибла.
+
+## ansible-3
+- Выполнено всё основное ДЗ 
+- Выполнено задание со * и добавлен динамический инвентори (еще с прошлого раза как минимум)
+- Добавлены workflow для packer validate, terraform validate, ansible-lint
+- Добавлены бейджи со статусом билда
+
+![Run OTUS tests](https://github.com/Otus-DevOps-2022-11/Isuaven_infra/actions/workflows/run-tests.yml/badge.svg)
+
+![Run Packer validate test](https://github.com/Otus-DevOps-2022-11/Isuaven_infra/actions/workflows/packer_validate.yml/badge.svg)
+
+![Run Terraform validate test](https://github.com/Otus-DevOps-2022-11/Isuaven_infra/actions/workflows/terraform_validate.yml/badge.svg)
+
+![Run Ansible Lint test](https://github.com/Otus-DevOps-2022-11/Isuaven_infra/actions/workflows/ansible_lint.yml/badge.svg)

@@ -2,6 +2,6 @@
   hosts: app
   tasks:
    - name: Clone repo
-     git:
+     ansible.builtin.git:
        repo: https://github.com/express42/reddit.git
        dest: /home/ubuntu/reddit

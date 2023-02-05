@@ -7,52 +7,52 @@
   tasks:
     - name: Change mongo config file
       become: true
-      template:
+      ansible.builtin.template:
         src: templates/mongod.conf.j2
         dest: /etc/mongod.conf
         mode: 0644
       tags: db-tag
-      notify: restart mongod
+      notify: Restart mongod
     - name: Add unit file for Puma
       become: true
-      copy:
+      ansible.builtin.copy:
         src: files/puma.service
         dest: /etc/systemd/system/puma.service
       tags: app-tag
-      notify: reload puma
+      notify: Reload puma
     - name: Add config for DB connection
-      template:
+      ansible.builtin.template:
         src: templates/db_config.j2
         dest: /home/ubuntu/db_config
       tags: app-tag
-    - name: enable puma
+    - name: Enable puma
       become: true
-      systemd: name=puma enabled=yes
+      ansible.builtin.systemd: name=puma enabled=yes
       tags: app-tag
 
     - name: Install Git
-      apt:
+      ansible.builtin.apt:
         name: git
         state: present
       become: true
       tags: deploy-tag
     - name: Fetch the latest version of application code
-      git:
+      ansible.builtin.git:
         repo: 'https://github.com/express42/reddit.git'
         dest: /home/ubuntu/reddit
         version: monolith
       tags: deploy-tag
-      notify: reload puma
+      notify: Reload puma
     - name: Bundle install
-      bundler:
+      ansible.builtin.bundler:
         state: present
         chdir: /home/ubuntu/reddit
       tags: deploy-tag
 
   handlers:
-    - name: restart mongod
+    - name: Restart mongod
       become: true
-      service: name=mongod state=restarted
-    - name: reload puma
+      ansible.builtin.service: name=mongod state=restarted
+    - name: Reload puma
       become: true
-      systemd: name=puma state=restarted
+      ansible.builtin.systemd: name=puma state=restarted

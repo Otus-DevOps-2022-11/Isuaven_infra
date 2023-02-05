@@ -1,0 +1,4 @@
+---
+# handlers file for roles/db
+- name: Restart mongod
+  ansible.builtin.service: name=mongod state=restarted
