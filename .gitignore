@@ -7,3 +7,10 @@ packer/variables.json
 *.retry
 ansible/plugins/inventory/__pycache__/
 ansible/roles/jdauphant.nginx/
+# Vagrant & molecule
+.vagrant/
+*.log
+*.pyc
+.molecule
+.cache
+.pytest_cache
