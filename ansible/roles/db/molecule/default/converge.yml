@@ -1,0 +1,10 @@
+---
+- name: Converge
+  become: true
+  hosts: all
+  vars:
+    mongo_bind_ip: 0.0.0.0
+  tasks:
+    - name: "Include db"
+      ansible.builtin.include_role:
+        name: "db"

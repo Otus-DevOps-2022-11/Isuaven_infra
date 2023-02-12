@@ -1,0 +1,16 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: vagrant
+  provider:
+    name: virtualbox
+platforms:
+  - name: instance
+    box: ubuntu/xenial64
+    provider_raw_config_args:
+      - "customize [ 'modifyvm', :id, '--uartmode1', 'disconnected' ]"
+provisioner:
+  name: ansible
+verifier:
+  name: testinfra
