@@ -1,0 +1,17 @@
+---
+# tasks file for roles/app
+- name: Add unit file for Puma
+  ansible.builtin.template:
+    src: puma.service.j2
+    dest: /etc/systemd/system/puma.service
+  notify: Reload puma
+
+- name: Add config for DB connection
+  ansible.builtin.template:
+    src: db_config.j2
+    dest: "/home/{{ deploy_user }}/db_config"
+    owner: "{{ deploy_user }}"
+    group: "{{ deploy_user }}"
+
+- name: Enable puma
+  ansible.builtin.systemd: name=puma enabled=yes

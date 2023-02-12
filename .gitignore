@@ -5,5 +5,12 @@ packer/variables.json
 *.tfvars
 .terraform/
 *.retry
-ansible/plugins/inventory/__pycache__/
+__pycache__/
 ansible/roles/jdauphant.nginx/
+# Vagrant & molecule
+.vagrant/
+*.log
+*.pyc
+.molecule
+.cache
+.pytest_cache

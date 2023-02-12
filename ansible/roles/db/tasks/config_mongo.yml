@@ -1,0 +1,8 @@
+---
+# tasks file for roles/db
+- name: Change mongo config file
+  ansible.builtin.template:
+    src: templates/mongod.conf.j2
+    dest: /etc/mongod.conf
+    mode: 0644
+  notify: Restart mongod
