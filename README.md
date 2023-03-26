@@ -88,6 +88,9 @@ yc compute instance create \
 - Добавлены workflow для packer validate, terraform validate, ansible-lint
 - Добавлены бейджи со статусом билда
 
+## gitlab-ci-1
+- Выполнено всё основное ДЗ
+
 ![Run OTUS tests](https://github.com/Otus-DevOps-2022-11/Isuaven_infra/actions/workflows/run-tests.yml/badge.svg)
 
 ![Run Packer validate test](https://github.com/Otus-DevOps-2022-11/Isuaven_infra/actions/workflows/packer_validate.yml/badge.svg)
